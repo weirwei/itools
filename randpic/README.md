@@ -6,7 +6,6 @@
 
 - 获取 Unsplash 随机图片链接
 - 支持按主题搜索图片
-- 可选择显示不同尺寸的图片链接
 - 简单易用的命令行界面
 
 ## 使用前准备
@@ -81,14 +80,9 @@ go install github.com/weirwei/randpic@latest
 - 支持按主题搜索
 - 支持显示详细信息
 
-## 许可证
-
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
-
 ## 致谢
 
 - [Unsplash](https://unsplash.com/) - 提供优质的图片资源
-- 所有贡献者和用户
 
 ## 作者
 
