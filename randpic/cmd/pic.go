@@ -44,6 +44,9 @@ func getRandomPic() error {
 	if query != "" {
 		q.Add("query", query)
 	}
+	if collectionID != "" {
+		q.Add("collections", collectionID)
+	}
 	req.URL.RawQuery = q.Encode()
 
 	// 添加认证头

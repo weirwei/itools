@@ -6,6 +6,7 @@
 
 - 获取 Unsplash 随机图片链接
 - 支持按主题搜索图片
+- 支持从特定集合中获取图片
 - 支持复制结果到剪贴板
 - 简单易用的命令行界面
 
@@ -35,6 +36,14 @@ randpic -q "nature"    # 获取自然主题的随机图片
 randpic --query "cat"  # 获取猫咪主题的随机图片
 ```
 
+### 从特定集合获取
+
+从指定集合中获取随机图片：
+```bash
+randpic -l "1538150"           # 从ID为1538150的集合中获取随机图片
+randpic --collection "1538150" # 同上
+```
+
 ### 显示详细信息
 
 显示图片的所有尺寸链接：
@@ -56,6 +65,7 @@ randpic --clipboard   # 同上
 ```bash
 randpic -q "nature" -d  # 获取自然主题的随机图片，并显示所有尺寸链接
 randpic -q "cat" -c     # 获取猫咪主题的随机图片，并复制到剪贴板
+randpic -l "1538150" -c # 从指定集合获取随机图片，并复制到剪贴板
 randpic -d -c           # 显示所有尺寸链接，并复制到剪贴板
 ```
 
@@ -88,6 +98,8 @@ go install github.com/weirwei/randpic@latest
 
 - 新增复制到剪贴板功能
 - 支持使用 -c/--clipboard 标志
+- 新增从特定集合获取随机图片功能
+- 支持使用 -l/--collection 标志指定集合ID
 
 ### v1.0.0 - 2025-03-12
 
