@@ -6,6 +6,9 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"strings"
+
+	"github.com/atotto/clipboard"
 )
 
 const (
@@ -66,17 +69,29 @@ func getRandomPic() error {
 		return fmt.Errorf("解析响应失败: %v", err)
 	}
 
-	// 输出图片链接
+	// 准备输出内容
+	var output strings.Builder
 	if detail {
-		fmt.Println("随机图片链接:")
-		fmt.Printf("原始尺寸: %s\n", photo.URLs.Raw)
-		fmt.Printf("全尺寸: %s\n", photo.URLs.Full)
-		fmt.Printf("常规尺寸: %s\n", photo.URLs.Regular)
-		fmt.Printf("小尺寸: %s\n", photo.URLs.Small)
-		fmt.Printf("缩略图: %s\n", photo.URLs.Thumb)
+		output.WriteString("随机图片链接:\n")
+		fmt.Fprintf(&output, "原始尺寸: %s\n", photo.URLs.Raw)
+		fmt.Fprintf(&output, "全尺寸: %s\n", photo.URLs.Full)
+		fmt.Fprintf(&output, "常规尺寸: %s\n", photo.URLs.Regular)
+		fmt.Fprintf(&output, "小尺寸: %s\n", photo.URLs.Small)
+		fmt.Fprintf(&output, "缩略图: %s\n", photo.URLs.Thumb)
 	} else {
-		fmt.Println(photo.URLs.Raw)
+		output.WriteString(photo.URLs.Raw)
 	}
 
+	// 输出结果
+	result := output.String()
+
+	// 如果指定了复制到剪贴板
+	if toClip {
+		if err := clipboard.WriteAll(result); err != nil {
+			return fmt.Errorf("复制到剪贴板失败: %v", err)
+		}
+	} else {
+		fmt.Println(result)
+	}
 	return nil
 }

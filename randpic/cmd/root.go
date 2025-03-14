@@ -10,6 +10,7 @@ import (
 var (
 	query  string
 	detail bool
+	toClip bool
 )
 
 var rootCmd = &cobra.Command{
@@ -35,4 +36,5 @@ func Execute() {
 func init() {
 	rootCmd.PersistentFlags().StringVarP(&query, "query", "q", "", "搜索主题")
 	rootCmd.PersistentFlags().BoolVarP(&detail, "detail", "d", false, "显示详细信息")
+	rootCmd.PersistentFlags().BoolVarP(&toClip, "clipboard", "c", false, "将结果复制到剪贴板")
 }
